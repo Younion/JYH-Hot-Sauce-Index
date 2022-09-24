@@ -37,11 +37,11 @@ reviewsRouter.get('/', async (req, res) => {
          records.forEach(function(record) {
              console.log(record.fields.Name);
 
-            //  let jsdata = record.fields.Name;
-            //  let result = [];
-            //     // for(var i in jsdata)
-            //       result.push(jsdata);
-            //       console.log(result);  
+             let jsdata = record.fields.Name;
+             let result = [];
+                // for(var i in jsdata)
+                  result.push(jsdata);
+                  console.log(result);  
      });
 
     fetchNextPage();
