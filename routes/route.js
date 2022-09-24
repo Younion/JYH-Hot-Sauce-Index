@@ -35,7 +35,7 @@ reviewsRouter.get('/', async (req, res) => {
     .select()
     .eachPage(function page(records, fetchNextPage) {
          records.forEach(function(record) {
-             console.log(record.fields.Name);
+            //  console.log(record.fields.Name);
 
              let jsdata = record.fields.Name;
              let result = [];
