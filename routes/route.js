@@ -1,7 +1,8 @@
 const express = require('express')
 const reviewsRouter = express.Router()
 const axios = require('axios')
-const Airtable = require('airtable')
+const Airtable = require('airtable');
+const { json } = require('express');
 const base = new Airtable({ apiKey: 'keyjRGeqc5QA99Q5v'}).base('app4Kq78nyR93DHLC');
 const table = base('Hot Sauces');
 require("dotenv").config()
@@ -14,7 +15,7 @@ reviewsRouter.get('/', async (req, res) => {
     const APP_KEY = process.env.API_KEY;
     const airtableAPI = await axios.get(url + APP_KEY)
 
-    console.log(airtableAPI.data.records)
+    // console.log(airtableAPI.data.records)
     res.render('app', {records: airtableAPI.data.records})
   } catch (err) {
     if (err.response) {
@@ -29,23 +30,25 @@ reviewsRouter.get('/', async (req, res) => {
   }
 })
 
-// ----------- Retrieve list -------------
-// reviewsRouter.get('/', async (req, res) => {
+// ----------- Retrieve Names -------------
+  base('Hot Sauces')
+    .select()
+    .eachPage(function page(records, fetchNextPage) {
+         records.forEach(function(record) {
+             console.log(record.fields.Name);
 
-//   base('Hot Sauces').select({
-//     view: "Grid view"
-// }).eachPage(function page(records, fetchNextPage) {
+            //  let jsdata = record.fields.Name;
+            //  let result = [];
+            //     // for(var i in jsdata)
+            //       result.push(jsdata);
+            //       console.log(result);  
+     });
 
-//     records.forEach(function(record) {
-//         console.log('Retrieved', record.get('Name'));
-//     });
-
-//     fetchNextPage();
-
-// }, function done(err) {
-//     if (err) { console.error(err); return; }
-// });
-// });
+    fetchNextPage();
+    
+}, function done(err) {
+    if (err) { console.error(err); return; }
+});
 
 
 // ---------------- POST Requests -------------------
@@ -78,6 +81,7 @@ reviewsRouter.post('/review', async (req, res) => {
       console.log(record.getId());
     });
     console.log('Post successful')
+    res.redirect('/');
   });
 });
 
@@ -104,7 +108,8 @@ reviewsRouter.post('/add', async (req, res) => {
       console.log(req.body);
       console.log(record.getId());
     });
-    console.log('Post successful')
+    console.log('Post successful');
+    res.redirect('/');
   });
 });
 
