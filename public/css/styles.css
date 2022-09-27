@@ -13,8 +13,10 @@ h1, h2, h3, h4, h5, h6 {
   padding: 3% 15%;
 }
 
-.reviewsContainer {
+#reviewsContainer {
+  position: relative;
   padding: 3rem 2rem;
+  margin-top: 50rem;
 }
 
 /* Sections */
@@ -66,6 +68,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Download Buttons */
 .download-button {
+  position: relative;
+  z-index: 1;
   margin: 5% 3% 5% 0;
 }
 
@@ -80,13 +84,26 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Title Image */
 .title-image {
-  width: 300px;
+  z-index: 0;
   transform: rotate(25deg);
   position: absolute;
   right: 15%
 }
 
 /* Forms */
+.form {
+  display: block;
+  margin: 0 auto;
+  width: 50rem;
+}
+
+.formItem {
+  text-align: left;
+}
+
+pre {
+  margin-left: .25rem;
+}
 
 .formReview {
   font-size: 3rem;
@@ -97,6 +114,7 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 3rem;
   color: #646464;
 }
+
 .formAdd {
   font-size: 3rem;
   color: black;
@@ -134,7 +152,6 @@ h1, h2, h3, h4, h5, h6 {
   p {
     font-size: 3rem;
   }
-
 }
 
 @media (min-width: 1444px) {
@@ -161,5 +178,43 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 1rem;
+}
+
+.heading {
+  text-align: center;
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.cardgrid {
+  height: 45rem;
+  width: 100%;
+  overflow:auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  grid-gap: 2rem;
+  text-decoration: none;
+  color: rgb(8, 8, 8);
+  background-color: #fff;
+  padding: 20px;
+}
+
+.card {
+  padding: 20px;
+}
+
+.card:hover {
+  box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}
+
+hr {
+  border: 0;
+  color: #ff4c68;
+  opacity: 1;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  filter: invert(100%);
 }
