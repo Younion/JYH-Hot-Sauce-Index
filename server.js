@@ -17,7 +17,7 @@ app.set('views', './views')
 app.set('view engine', 'ejs')
 
 // routes
-const reviewsRouter = require('./routes/route')
+const reviewsRouter = require('./route')
 
 app.use('/', reviewsRouter)
 
