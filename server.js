@@ -17,7 +17,7 @@ app.set('views', '/')
 app.set('view engine', 'ejs')
 
 // routes
-const reviewsRouter = require('./index')
+const reviewsRouter = require('index')
 
 app.use('/', reviewsRouter)
 
