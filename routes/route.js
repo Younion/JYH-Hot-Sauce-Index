@@ -3,8 +3,6 @@ const reviewsRouter = express.Router()
 const axios = require('axios')
 const Airtable = require('airtable');
 const { json } = require('express');
-const base = new Airtable({ apiKey: 'keyjRGeqc5QA99Q5v' }).base('app4Kq78nyR93DHLC');
-const table = base('Hot Sauces');
 require("dotenv").config()
 
 // --------------- GET Requests -------------------
