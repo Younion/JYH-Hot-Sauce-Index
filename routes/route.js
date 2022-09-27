@@ -15,7 +15,7 @@ reviewsRouter.get('/', async (req, res) => {
     const APP_KEY = process.env.API_KEY;
     const airtableAPI = await axios.get(url + APP_KEY)
 
-    console.log(airtableAPI.data.records)
+    // console.log(airtableAPI.data.records)
     res.render('app', { records: airtableAPI.data.records })
   } catch (err) {
     if (err.response) {

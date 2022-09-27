@@ -334,15 +334,41 @@
         <div class="formItem">
           <h3><label for="heatSources">Heat Sources</label></br></h3>
           </br>
-          <% records.forEach(function(records, index) {%>
+          <!-- <% records.forEach(function(records, index) {%>
             <% var options=[]; %>
               <% for(var i=0; i <=options.length; i++) { %>
                 <input type="checkbox" id="heatSources" name="heatSources"
                   value="<%= records.fields['Heat Sources String'] %>" />
                 <%= " " + records.fields['Heat Sources String'] %></br>
                   <% } %>
-                    <% }) %>
-                      </br>
+                    <% }) %> -->
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Habanero" /> Habanero</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Scorpion" /> Scorpion</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Bhut Jolokia" /> Bhut Jolokia</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Carolina Reaper" /> Carolina Reaper</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Naga Jolokia" /> Naga Jolokia</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Ghost" /> Ghost</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Generic Yellow / Banana / Wax" /> Generic Yellow / Banana / Wax</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Mustard" /> Mustard</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Generic Red / Red Pepper Flakes" /> Generic Red / Red Pepper Flakes</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Tabasco" /> HabTabascoanero</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Scotch Bonnet" /> Scotch Bonnet</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Thai Chili" /> Thai Chili</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Cayenne" /> Cayenne</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Generic Green / Hatch / Green Chili" /> Generic Green / Hatch / Green Chili</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Jalapeno" /> Jalapeno</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Arbol" /> Arbol</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Pequin / Picant" /> Pequin / Picant</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Chipotle" /> Chipotle</br>
+                    <input type="checkbox" id="heatSources" name="heatSources" value="Serrano" /> Serrano</br>
+
+
+        
+        
+        
+        
+              </br>
+        </br>
         </div>
         <div class="formItem">
           <button type="submit" value="addSubmit" id="formButton" class="addButton">Submit!</button>
