@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>JYH Hot Sauce Index</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+  <!-- FontAwesome -->
+  <script src="https://kit.fontawesome.com/e62a9b2505.js" crossorigin="anonymous"></script>
+
+  <!-- Axios -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.min.js"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+  <section class="color-section" id="title">
+
+    <div class="container-fluid">
+
+      <!-- Nav Bar -->
+      <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" href="">JYH Hot Sauce Index</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+          data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#addASauce">About This Project</a></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Title -->
+      <div class="row">
+        <div class="col-lg-6">
+          <h1 class="big-heading">Review hot sauces from around the world!</h1>
+
+          <!--
+        <button type="button" onClick="document.getElementById('reviewsContainer').scrollIntoView();" class="btn btn-dark btn-lg download-button">See Reviews</button>
+-->
+
+          <button type="button" onClick="document.getElementById('reviewASauce').scrollIntoView();"
+            class="btn btn-outline-light btn-lg download-button">Review a Sauce</button>
+          <button type="button" onClick="document.getElementById('addASauce').scrollIntoView();"
+            class="btn btn-outline-light btn-lg download-button">Add a Sauce</button>
+        </div>
+        <div class="col-lg-6 col-md-12">
+          <img class="title-image" src="images/breathingfire.png" alt="fire-breathing-chicken">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <p id="GFG_UP" style="font-size: 15px; font-weight: bold;">
+  </p>
+
+  <!-- API Data -->
+  <div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner pt-3 px-2 role=" listbox">
+      <% var i=0; %>
+        <!-- looping data -->
+        <% records.forEach((records, inx)=> { i++%>
+          <% if (inx==0||inx%1==0) { %>
+            <div class="<%= i === 1 ? " carousel-item active":"carousel-item" %>">
+              <% } %>
+                <div class="h5 mt-2  text-center" style="color:#333;">
+                  <span style="color: #333;">
+                    <h2>
+                      <%= records.fields.Name %>
+                    </h2>
+                    <p class="averageRating">Average Rating: <%- Math.round(records.fields['Average Rating']) %> Stars
+                    </p>
+                    <p class="spicinessRating">Spiciness Rating: <%- records.fields['Spiciness averageRating'] %> out of
+                        10</p>
+                    <p class="tastings">Tastings: <%- records.fields.Tastings %>
+                    </p>
+                    <p class="loved">Percent Loved: <%- Math.round(records.fields['Percent Loved'])*100 %>%</p>
+                    <p class="heatSources">Heat Sources: <%- records.fields['Heat Sources String'] %>
+                    </p>
+                  </span>
+                </div>
+                <% if ((i % 1)==0) { %>
+            </div>
+            <% } %>
+              <!-- loop end -->
+              <% }) %>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+  <br />
+
+  <!-- Call to Action -->
+  <section class="color-section" id="cta">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12 footer-header">
+          <h3 class="big-heading">Find Your Hot Sauce True Love!</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+  <br />
+
+  <!-- Hot Sauce Reviews -->
+  <h1>Hot Sauce Reviews</h1>
+  <br />
+
+  <div class="cardgrid">
+    <% records.forEach(function(records, index) {%>
+      <div class="card">
+        <h2>
+          <%= records.fields.Name %>
+        </h2>
+        <p class="averageRating">Average Rating: <%- Math.round(records.fields['Average Rating']) %> Stars</p>
+        <p class="spicinessRating">Spiciness Rating: <%- Math.round(records.fields['Average Spiciness']) %> out of 10
+        </p>
+        <p class="tastings">Tastings: <%- records.fields.Tastings %>
+        </p>
+        <p class="loved">Percent Loved: <%- Math.round(records.fields['Percent Loved']*100) %>%</p>
+        <p class="heatSources">Heat Sources: <%- records.fields['Heat Sources String'] %>
+        </p>
+        <p class="flavorNotes">Flavor Notes: <%- records.fields['Flavor Notes String'] %>
+        </p>
+        <p class="tastingNotes">Tasting Notes: <%- records.fields['Tasting Notes'] %>
+        </p>
+      </div>
+      <% }) %>
+  </div>
+
+  <!-- Review a Sauce -->
+  <section class="color-section" id="reviewASauce">
+    <div class="container-fluid">
+      <h1>Review a Sauce</h1>
+      <br>
+      <p>
+        Trying a sauce that is already in our database? Review it!<br>
+        <br>
+        <!-- Oh also! Form text too small? Click this link to view form directly<br>
+        <a href="https://airtable.com/shrsUTxcU1hyaLMNn" target="_blank" rel="noopener noreferrer" class="formReview">Review Form</a> -->
+      </p>
+    </div>
+
+    <form id="reviewForm" action="/review" method="POST" class="reviewForm">
+      <div class="form">
+        <div class="formItem">
+          <h3><label for="hotSauceName">Hot Sauce Name: </label></br></h3>
+          </br>
+          <select name="hotSauceName" id="hotSauceName">
+            <% records.forEach(function(records, index) {%>
+              <% var options=[]; %>
+                <% for(var i=0; i <=options.length; i++) { %>
+                  <option value="Select Sauce">Select Sauce</option>
+                  <option value="<%= records.fields.Name %>">
+                    <%= records.fields.Name %>
+                  </option>
+                  <% } %>
+                    <% }) %>
+          </select>
+          </br>
+          </br>
+        </div>
+        <div class="formItem">
+          <h3><label for="presentation">Presentation</br></h3>
+          </br>
+          Overall presentation of the sauce, including items such as: sauce color, bottle art, printing quality,
+          personal story, unique embellishments, etc.
+          </label>
+          </br>
+          </br>
+          <input type="radio" id="presentation" name="presentation" value="1" />
+          <input type="radio" id="presentation" name="presentation" value="2" />
+          <input type="radio" id="presentation" name="presentation" value="3" />
+          <input type="radio" id="presentation" name="presentation" value="4" />
+          <input type="radio" id="presentation" name="presentation" value="5" /></br>
+          <pre>1 2 3 4 5</pre></br>
+        </div>
+        <div class="formItem">
+          <h3><label for="viscosity">Viscocity</label></br></h3>
+          </br>
+          <input type="radio" id="viscosity" name="viscosity" value="Thin" /> Thin</br>
+          <input type="radio" id="viscosity" name="viscosity" value="Thin, with chunks" /> Thin, with chunks</br>
+          <input type="radio" id="viscosity" name="viscosity" value="Average" /> Average</br>
+          <input type="radio" id="viscosity" name="viscosity" value="Average, with chunks" /> Average, with chunks</br>
+          <input type="radio" id="viscosity" name="viscosity" value="Thick" /> Thick</br>
+          <input type="radio" id="viscosity" name="viscosity" value="Thick, with chunks" /> Thick, with chunks</br>
+          </br>
+        </div>
+        <div class="formItem">
+          <h3><label for="spiciness">Spiciness Rating</br></h3>
+          </br>
+          1-2: Suitable for people with very low spice tolerance</br>
+          3-4: Suitable for people with low spice tolerance</br>
+          5-6: Suitable for people with medium spice tolerance</br>
+          7-8: Suitable for people with high spice tolerance</br>
+          9-10: Suitable for absolute goddam daredevils</label></br>
+          </br>
+          <input type="radio" id="spiciness" name="spiciness" value="1" />
+          <input type="radio" id="spiciness" name="spiciness" value="2" />
+          <input type="radio" id="spiciness" name="spiciness" value="3" />
+          <input type="radio" id="spiciness" name="spiciness" value="4" />
+          <input type="radio" id="spiciness" name="spiciness" value="5" />
+          <input type="radio" id="spiciness" name="spiciness" value="6" />
+          <input type="radio" id="spiciness" name="spiciness" value="7" />
+          <input type="radio" id="spiciness" name="spiciness" value="8" />
+          <input type="radio" id="spiciness" name="spiciness" value="9" />
+          <input type="radio" id="spiciness" name="spiciness" value="10" /></br>
+          <pre>1 2 3 4 5 6 7 8 9 10</pre></br>
+        </div>
+        <div class="formItem">
+          <h3><label for="flavorNotes">Flavor Notes</label></br></h3>
+          </br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Bitter" /> Bitter</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Black Pepper" /> Black Pepper</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Constituent Peppers" /> Constituent
+          Peppers</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Floral" /> Floral</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Fruity" /> Fruity</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Garlicky" /> Garlicky</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Herbal" /> Herbal</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Linger" /> Linger</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Mustard" /> Mustard</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Oniony" /> Oniony</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Savory" /> Savory</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Smokey" /> Smokey</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Sour" /> Sour</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Sweet" /> Sweet</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Vinegar" /> Vinegar</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Tangy" /> Tangy</br>
+          <input type="checkbox" id="flavorNotes" name="flavorNotes" value="Salty" /> Salty</br>
+          </br>
+        </div>
+        <div class="formItem">
+          <h3><label for="overallRating">Overall Rating</label></br></h3>
+          </br>
+          <input type="radio" id="overallRating" name="overallRating" value="1" />
+          <input type="radio" id="overallRating" name="overallRating" value="2" />
+          <input type="radio" id="overallRating" name="overallRating" value="3" />
+          <input type="radio" id="overallRating" name="overallRating" value="4" />
+          <input type="radio" id="overallRating" name="overallRating" value="5" /></br>
+          <pre>1 2 3 4 5</pre></br>
+        </div>
+        <div class="formItem">
+          <h3><label for="lovedScore">Loved it?</label></br></h3>
+          <input type="radio" id="lovedScore" name="lovedScore" value="1" /></br></br>
+        </div>
+        <div class="formItem">
+          <h3><label for="addNotes">Additional Taster Notes</label></br></h3>
+          <textarea id="addNotes" name="addNotes" rows="5" cols="75" /></textarea></br></br>
+        </div>
+        <div class="formItem">
+          <button type="submit" value="Submit!" id="formButton" class="reviewButton">Submit!</button>
+        </div>
+      </div>
+    </form>
+
+
+    <!--
+    <script src="https://static.airtable.com/js/embed/embed_snippet_v1.js"></script><iframe class="airtable-embed airtable-dynamic-height" src="https://airtable.com/embed/shrsUTxcU1hyaLMNn?backgroundColor=red" frameborder="0" onmousewheel=""
+      width="85%" height="2461" style="background: transparent; border: 1px solid #ccc;"></iframe> -->
+  </section>
+
+  <!-- Add a Sauce -->
+  <section class="white-section" id="addASauce">
+    <div class="container-fluid">
+
+
+      <h1>Add a Sauce</h1>
+      </br>
+      <p>
+        Trying a new sauce that isn't in our database? Add it for us!<br>
+        <!-- Oh also! Form text too small? Click this link to view form directly<br> -->
+        <!-- <a href="https://airtable.com/shrTHWvVIsRAIqelP" target="_blank" rel="noopener noreferrer" class="formAdd">Review Form</a> -->
+      </p>
+    </div>
+
+    <form id="addForm" action="/add" method="POST" class="addForm">
+      <div class="form">
+        <div class="formItem">
+          <h3><label for="manufacturerEntry">Manufacturer</label></br></h3>
+          </br>
+          <input type="text" name="manufacturerEntry" id="manufacturerEntry" /></br>
+          </br>
+          </br>
+        </div>
+        <div class="formItem">
+          <h3><label for="sauceName">Sauce Name</br></h3>
+          </br>
+          Please exclude any descriptive subtext.
+          </label>
+          </br>
+          </br>
+          <input type="text" name="sauceName" id="sauceName" /></br>
+          </br>
+        </div>
+        <div class="formItem">
+          <h3><label for="manufacturerLocation">Manufacturer Location</label></br></h3>
+          </br>
+          <select name="manufacturerLocation" id="manufacturerLocation">
+            <option value="local">Local (Colorado)</option>
+            <option value="domestic">Domestic</option>
+            <option value="international">International</option>
+          </select>
+          </br>
+          </br>
+        </div>
+        <div class="formItem">
+          <h3><label for="heatSources">Heat Sources</label></br></h3>
+          </br>
+          <!-- <% records.forEach(function(records, index) {%>
+            <% var options=[]; %>
+              <% for(var i=0; i <=options.length; i++) { %>
+                <input type="checkbox" id="heatSources" name="heatSources"
+                  value="<%= records.fields['Heat Sources String'] %>" />
+                <%= " " + records.fields['Heat Sources String'] %></br>
+                  <% } %>
+                    <% }) %> -->
+          <input type="checkbox" id="heatSources" name="heatSources" value="Habanero" /> Habanero</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Scorpion" /> Scorpion</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Bhut Jolokia" /> Bhut Jolokia</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Carolina Reaper" /> Carolina Reaper</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Naga Jolokia" /> Naga Jolokia</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Ghost" /> Ghost</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Generic Yellow / Banana / Wax" /> Generic
+          Yellow / Banana / Wax</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Mustard" /> Mustard</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Generic Red / Red Pepper Flakes" /> Generic
+          Red / Red Pepper Flakes</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Tabasco" /> HabTabascoanero</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Scotch Bonnet" /> Scotch Bonnet</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Thai Chili" /> Thai Chili</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Cayenne" /> Cayenne</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Generic Green / Hatch / Green Chili" />
+          Generic Green / Hatch / Green Chili</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Jalapeno" /> Jalapeno</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Arbol" /> Arbol</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Pequin / Picant" /> Pequin / Picant</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Chipotle" /> Chipotle</br>
+          <input type="checkbox" id="heatSources" name="heatSources" value="Serrano" /> Serrano</br>
+          </br>
+          </br>
+        </div>
+        <div class="formItem">
+          <button type="submit" value="addSubmit" id="formButton" class="addButton">Submit!</button>
+        </div>
+      </div>
+    </form>
+
+    <!-- <script src="https://static.airtable.com/js/embed/embed_snippet_v1.js"></script><iframe class="airtable-embed airtable-dynamic-height" src="https://airtable.com/embed/shrTHWvVIsRAIqelP?backgroundColor=red" frameborder="0" onmousewheel=""
+      width="85%" height="1149" style="background: transparent; border: 1px solid #ccc;"></iframe> -->
+  </section>
+
+  <!-- Footer -->
+  <footer class="white-section" id="footer">
+    <div class="container-fluid">
+      <i class="fa-brands fa-twitter social-icon"></i>
+      <i class="fa-brands fa-facebook-f social-icon"></i>
+      <i class="fa-brands fa-instagram social-icon"></i>
+      <i class="fa-solid fa-envelope social-icon"></i>
+      <p>© Copyright 2022 JYH Hot Sauce Index</p>
+    </div>
+  </footer>
+
+</body>
+
+</html>
