@@ -3,7 +3,7 @@ const reviewsRouter = express.Router()
 const axios = require('axios')
 const Airtable = require('airtable');
 const { json } = require('express');
-const base = new Airtable({ apiKey: 'keyjRGeqc5QA99Q5v'}).base('app4Kq78nyR93DHLC');
+const base = new Airtable({ apiKey: 'keyjRGeqc5QA99Q5v' }).base('app4Kq78nyR93DHLC');
 const table = base('Hot Sauces');
 require("dotenv").config()
 
@@ -15,8 +15,8 @@ reviewsRouter.get('/', async (req, res) => {
     const APP_KEY = process.env.API_KEY;
     const airtableAPI = await axios.get(url + APP_KEY)
 
-    // console.log(airtableAPI.data.records)
-    res.render('app', {records: airtableAPI.data.records})
+    console.log(airtableAPI.data.records)
+    res.render('app', { records: airtableAPI.data.records })
   } catch (err) {
     if (err.response) {
       console.log(err.response.data)
@@ -30,38 +30,18 @@ reviewsRouter.get('/', async (req, res) => {
   }
 })
 
-// ----------- Retrieve Names -------------
-  base('Hot Sauces')
-    .select()
-    .eachPage(function page(records, fetchNextPage) {
-         records.forEach(function(record) {
-            //  console.log(record.fields.Name);
-
-             let jsdata = record.fields.Name;
-             let result = [];
-                // for(var i in jsdata)
-                  result.push(jsdata);
-                  console.log(result);  
-     });
-
-    fetchNextPage();
-    
-}, function done(err) {
-    if (err) { console.error(err); return; }
-});
-
-
 // ---------------- POST Requests -------------------
 
 // ----------------- Review POST --------------------
 reviewsRouter.post('/review', async (req, res) => {
   var Airtable = require('airtable');
-  var base = new Airtable({apiKey: 'keyjRGeqc5QA99Q5v'}).base('app4Kq78nyR93DHLC');
+  const APP_KEY = process.env.API_KEY;
+  var base = new Airtable({ apiKey: APP_KEY }).base('app4Kq78nyR93DHLC');
 
   base('Tasting Form').create([
     {
       "fields": {
-        // "Hot Sauce Name": req.body.hotSauceName, //message: 'Value is not an array of record IDs.',
+        "Hot Sauce Name": req.body.hotSauceName, //message: 'Value is not an array of record IDs.',
         "Presentation": req.body.presentation,
         "Viscosity": req.body.viscosity,
         "Spiciness Rating": req.body.spiciness,
@@ -71,7 +51,7 @@ reviewsRouter.post('/review', async (req, res) => {
         "Taster Notes": req.body.addNotes
       }
     }
-  ], {typecast: true}, function(err, records) {
+  ], { typecast: true }, function (err, records) {
     if (err) {
       console.error(err);
       return;
@@ -87,8 +67,9 @@ reviewsRouter.post('/review', async (req, res) => {
 
 // ---------------- Add POST ------------------
 reviewsRouter.post('/add', async (req, res) => {
-  var Airtable = require('airtable');
-  var base = new Airtable({apiKey: 'keyjRGeqc5QA99Q5v'}).base('app4Kq78nyR93DHLC');
+  const APP_KEY = process.env.API_KEY;
+  var base = new Airtable({ apiKey: APP_KEY }).base('app4Kq78nyR93DHLC');
+
 
   base('Hot Sauces').create([
     {
@@ -99,7 +80,7 @@ reviewsRouter.post('/add', async (req, res) => {
         "Heat Sources": req.body.heatSources
       }
     }
-  ], {typecast: true}, function(err, records) {
+  ], { typecast: true }, function (err, records) {
     if (err) {
       console.error(err);
       return;
