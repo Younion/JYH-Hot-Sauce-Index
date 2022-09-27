@@ -13,7 +13,7 @@ app.use('/img', express.static(__dirname + 'public/img'))
 app.use('/js', express.static(__dirname + 'public/js'))
 
 // templating engine
-app.set('views', './views')
+app.set('views', '/')
 app.set('view engine', 'ejs')
 
 // routes
